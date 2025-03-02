@@ -1,5 +1,8 @@
 #include "main.h"
 
+//Initializes controller
+pros::Controller controller(pros::E_CONTROLLER_MASTER);
+
 //For now, all ports of every device are temporary and will change based on how the bots build changes.
 
 //Initializes motors and sets their ports.

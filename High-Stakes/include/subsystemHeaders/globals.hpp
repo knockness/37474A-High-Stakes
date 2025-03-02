@@ -1,5 +1,8 @@
 #include "main.h"
 
+//Declares Controller as Globally accesable
+pros::Controller controller;
+
 //Anything with a "left" or "right" lable on it assumes you are looking at the robot from the back.
 
 //Declares motors as globally accesable.

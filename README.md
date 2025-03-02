@@ -16,7 +16,9 @@ The file structure is near identical to the default structure that PROS provides
 
 `subsystemHeaders` contains header (`.hpp`) files named after all the robots subsystems (intake, drivetrain etc...). Each of which declare functions specific to that subsystem. `subsystemHeaders` also has a file named `globals.hpp` that declares all devices (motors, controller etc...) as globally accessible.
 
-`subsystemFiles` contains source code C++ files (`.cpp`) named after the robots subsystems, each of which set the parameters of the already declared functions in the header files. There is also a file named `globals.cpp` that initialise the device ports, the parameters of which are initialised in `main.cpp`.
+`subsystemFiles` contains source code C++ files (`.cpp`) named after the robots subsystems, each of which set the parameters of the already declared functions in the header files. These functions will be used in `main.cpp` to execute that actual code of the robot so that code is less cluttered and organised into files with names that make sense. 
+
+There is also a file named `globals.cpp` that initialise the device ports, the parameters of which are initialised in `main.cpp`, though the where the parameters are initialised is subject to change.
 
 
 

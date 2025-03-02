@@ -103,5 +103,10 @@ void autonomous()
  */
 void opcontrol()
 {
+	while(true)
+	{
 
+//Motors update values (like speed and rotations) every 10 miliseconds, this delay is to make sure that we don't set any of those values too early or late.
+		pros::delay(10);
+	}
 }
