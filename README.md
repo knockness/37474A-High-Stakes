@@ -5,8 +5,8 @@ This repository will contain the code for our VEX High Stakes robot using the PR
 To install PROS, use the guide on the [official PROS documentation](https://pros.cs.purdue.edu/v5/index.html).
 
 Currently, the project is using: 
-PROS CLI version 3.5.4
-PROS kernel version 4.1.1
+PROS CLI version 3.5.4,
+PROS kernel version 4.1.1,
 lliblvgl version 8.3.8
 
 Before you read or make a commit to the code base, it is strongly recommend that you read and understand how the file structure and naming conventions work.
