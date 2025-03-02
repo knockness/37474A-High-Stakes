@@ -71,9 +71,13 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
-/**
- * You can add C++-only headers here
- */
+#include "subsystemHeaders/claw.hpp"
+#include "subsystemHeaders/drivetrain.hpp"
+#include "subsystemHeaders/globals.hpp"
+#include "subsystemHeaders/intake.hpp"
+#include "subsystemHeaders/ladderClimb.hpp"
+#include "subsystemHeaders/mogoMech.hpp"
+#include "subsystemHeaders/intakeLift.hpp"
 //#include <iostream>
 #endif
 

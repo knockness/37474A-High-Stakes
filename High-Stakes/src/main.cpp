@@ -1,32 +1,52 @@
 #include "main.h"
 
 /**
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- */
-void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
-
-/**
  * Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void initialize() {
+void initialize() 
+{
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
+	
+//Initializes Motor Paramaters.
+	//Drivetrian motors
+	//Front-left drivetrain motor
+	frontLeft_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
+	frontLeft_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	frontLeft_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
 
-	pros::lcd::register_btn1_cb(on_center_button);
+	//Back-left drivetrain motor
+	backLeft_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
+	backLeft_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	backLeft_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+
+	//Front-right drivetrain motor
+	frontRight_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
+	frontRight_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	frontRight_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+
+	//Back-right drivetrain motor
+	backRight_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
+	backRight_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	backRight_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+
+	//Intake motor
+	intake_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
+	intake_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	intake_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+
+	//Intake Lift Motors
+	//Left Lift Motor
+	left_Intake_Lift.set_gearing(pros::E_MOTOR_GEARSET_36);
+	left_Intake_Lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	left_Intake_Lift.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+
+	//Right Lift Motor
+	right_Intake_Lift.set_gearing(pros::E_MOTOR_GEARSET_36);
+	right_Intake_Lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	right_Intake_Lift.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
 }
 
 /**
@@ -34,9 +54,12 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() 
+{
 
-/**
+}
+
+/*
  * Runs after initialize(), and before autonomous when connected to the Field
  * Management System or the VEX Competition Switch. This is intended for
  * competition-specific initialization routines, such as an autonomous selector
@@ -45,7 +68,10 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {}
+void competition_initialize() 
+{
+
+}
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -58,10 +84,12 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() 
+{
 
-/**
- * Runs the operator control code. This function will be started in its own task
+}
+
+/* Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
  * the Field Management System or the VEX Competition Switch in the operator
  * control mode.
@@ -73,22 +101,7 @@ void autonomous() {}
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
-void opcontrol() {
-	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	pros::MotorGroup left_mg({1, -2, 3});    // Creates a motor group with forwards ports 1 & 3 and reversed port 2
-	pros::MotorGroup right_mg({-4, 5, -6});  // Creates a motor group with forwards port 5 and reversed ports 4 & 6
+void opcontrol()
+{
 
-
-	while (true) {
-		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);  // Prints status of the emulated screen LCDs
-
-		// Arcade control scheme
-		int dir = master.get_analog(ANALOG_LEFT_Y);    // Gets amount forward/backward from left joystick
-		int turn = master.get_analog(ANALOG_RIGHT_X);  // Gets the turn left/right from right joystick
-		left_mg.move(dir - turn);                      // Sets left motor voltage
-		right_mg.move(dir + turn);                     // Sets right motor voltage
-		pros::delay(20);                               // Run for 20 ms then update
-	}
 }
