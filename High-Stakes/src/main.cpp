@@ -26,11 +26,13 @@ void initialize()
 	frontRight_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
 	frontRight_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	frontRight_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+	frontRight_Drive_Motor.is_reversed(true);
 
 	//Back-right drivetrain motor
 	backRight_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
 	backRight_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	backRight_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+	backRight_Drive_Motor.is_reversed(true);
 
 	//Intake motor
 	intake_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
@@ -47,9 +49,10 @@ void initialize()
 	right_Intake_Lift.set_gearing(pros::E_MOTOR_GEARSET_36);
 	right_Intake_Lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	right_Intake_Lift.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+	right_Intake_Lift.is_reversed(true);
 }
 
-/**
+/*
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
@@ -73,7 +76,7 @@ void competition_initialize()
 
 }
 
-/**
+/*
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
  * the Field Management System or the VEX Competition Switch in the autonomous

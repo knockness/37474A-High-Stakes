@@ -15,6 +15,9 @@ extern pros::Motor backRight_Drive_Motor; //Back Right
 //Intake Motor
 extern pros::Motor intake_Motor;
 
+//Intake Optical Sensor
+extern pros::Optical intake_Optical;
+
 //Intake Lift Motors
 extern pros::Motor left_Intake_Lift; //Left
 extern pros::Motor right_Intake_Lift; //Right
