@@ -21,7 +21,10 @@ void assignMotorDirections(int leftPower, int rightPower)
 {
     //Assign the power values to the motors using the values of the joystick that have been passed in on line 17.
     frontLeft_Drive_Motor.move(leftPower);
+    upperLeft_Drive_Motor.move(leftPower);
     backLeft_Drive_Motor.move(leftPower);
+
     frontRight_Drive_Motor.move(rightPower);
+    upperRight_Drive_Motor.move(rightPower);
     backRight_Drive_Motor.move(rightPower);
 }

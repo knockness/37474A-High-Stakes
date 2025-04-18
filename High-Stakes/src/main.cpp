@@ -16,40 +16,52 @@ void initialize()
 	frontLeft_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
 	frontLeft_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	frontLeft_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+	frontLeft_Drive_Motor.set_reversed(true);
+
+	//Upper-left drivetrain motor
+	upperLeft_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
+	upperLeft_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	upperLeft_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
 
 	//Back-left drivetrain motor
 	backLeft_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
 	backLeft_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	backLeft_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+	backLeft_Drive_Motor.set_reversed(true);
 
 	//Front-right drivetrain motor
 	frontRight_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
 	frontRight_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	frontRight_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
-	frontRight_Drive_Motor.is_reversed(true);
+
+	//Upper-right drivetrain motor
+	upperRight_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
+	upperRight_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	upperRight_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
+	upperRight_Drive_Motor.set_reversed(true);
 
 	//Back-right drivetrain motor
 	backRight_Drive_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
 	backRight_Drive_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	backRight_Drive_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
-	backRight_Drive_Motor.is_reversed(true);
 
+	//Intake Motors
 	//Intake motor
 	intake_Motor.set_gearing(pros::E_MOTOR_GEARSET_06);
-	intake_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+	intake_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	intake_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_COUNTS);
 
-	//Intake Lift Motors
-	//Left Lift Motor
-	left_Intake_Lift.set_gearing(pros::E_MOTOR_GEARSET_36);
-	left_Intake_Lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	left_Intake_Lift.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+	//Intake Lift Motor
+	Intake_Lift_Motor.set_gearing(pros::E_MOTOR_GEARSET_36);
+	Intake_Lift_Motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	Intake_Lift_Motor.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
 
-	//Right Lift Motor
-	right_Intake_Lift.set_gearing(pros::E_MOTOR_GEARSET_36);
-	right_Intake_Lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	right_Intake_Lift.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
-	right_Intake_Lift.is_reversed(true);
+	//Set Default Pneumatic Actuations
+	left_Actuator.set_value(true);
+	right_Actuator.set_value(true);
+	clawClamp.set_value(true);
+	pickup_WristJoint.set_value(true);
+	scoring_WristJoint.set_value(true);
 }
 
 /*
@@ -108,7 +120,10 @@ void opcontrol()
 {
 	while(true)
 	{
+		getAnalogueDirection();
+		assignMotorDirections();
 
+		clampToggle();
 //Motors update values (like speed and rotations) every 10 miliseconds, this delay is to make sure that we don't set any of those values too early or late.
 		pros::delay(10);
 	}
